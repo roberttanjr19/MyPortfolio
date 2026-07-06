@@ -1,0 +1,14 @@
+html,
+body,
+#root {
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+}
+
+::selection {
+    background: rgba(216, 195, 165, 0.35);
+    color: #2b2b2b;
+}
