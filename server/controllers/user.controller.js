@@ -26,6 +26,9 @@ exports.create = async (req, res) => {
     await user.save();
     res.status(201).json({ message: 'Successfully signed up!' });
   } catch (err) {
+    if (err.code === 11000) {
+      return res.status(400).json({ message: 'Email is already taken' });
+    }
     res.status(400).json({ message: err.message });
   }
 };

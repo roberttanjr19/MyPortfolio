@@ -23,6 +23,15 @@ app.use('/api/qualifications', require('./server/routes/qualification.routes'));
 app.use('/api/users', require('./server/routes/user.routes'));
 app.use('/auth', require('./server/routes/auth.routes'));
 
+app.use((req, res) => {
+  res.status(404).json({ message: 'Resource not found' });
+});
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(err.status || 500).json({ message: err.message || 'Internal server error' });
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`App running in port ${PORT}`);
